@@ -12,17 +12,17 @@ const DATA_DIR = path.join(__dirname, '../../data');
 const STORE_FILE = path.join(DATA_DIR, 'store.json');
 
 const DEFAULT_CONFIG: AppConfig = {
-  environment: 'production',
-  consumerKey: '',
-  consumerSecret: '',
-  passkey: '',
-  shortcode: '',
-  partyB: '',
-  accountReference: 'SLEEK-POS',
-  businessType: 'BuyGoods',
-  callbackUrl: 'https://sleek-pay.loca.lt/api/mpesa/callback/stk',
-  initiatorName: '',
-  securityCredential: ''
+  environment: (process.env.ENVIRONMENT as any) || 'production',
+  consumerKey: process.env.CONSUMER_KEY || '',
+  consumerSecret: process.env.CONSUMER_SECRET || '',
+  passkey: process.env.PASSKEY || '',
+  shortcode: process.env.SHORTCODE || '',
+  partyB: process.env.SHORTCODE || '',
+  accountReference: process.env.ACCOUNT_REFERENCE || 'SLEEK-POS',
+  businessType: (process.env.BUSINESS_TYPE as any) || 'BuyGoods',
+  callbackUrl: process.env.CALLBACK_URL || 'https://sleek-pay.loca.lt/api/mpesa/callback/stk',
+  initiatorName: process.env.INITIATOR_NAME || '',
+  securityCredential: process.env.SECURITY_CREDENTIAL || ''
 };
 
 // Initial realistic customer names mapped to simulated/frequent phone numbers for POS quick resolution
@@ -55,8 +55,18 @@ class Store {
       if (fs.existsSync(STORE_FILE)) {
         const raw = fs.readFileSync(STORE_FILE, 'utf-8');
         const parsed = JSON.parse(raw);
+        const loadedConfig = { ...DEFAULT_CONFIG, ...(parsed.config || {}) };
+        if (!loadedConfig.consumerKey && process.env.CONSUMER_KEY) loadedConfig.consumerKey = process.env.CONSUMER_KEY;
+        if (!loadedConfig.consumerSecret && process.env.CONSUMER_SECRET) loadedConfig.consumerSecret = process.env.CONSUMER_SECRET;
+        if (!loadedConfig.passkey && process.env.PASSKEY) loadedConfig.passkey = process.env.PASSKEY;
+        if (!loadedConfig.shortcode && process.env.SHORTCODE) {
+          loadedConfig.shortcode = process.env.SHORTCODE;
+          loadedConfig.partyB = process.env.SHORTCODE;
+        }
+        if (!loadedConfig.callbackUrl && process.env.CALLBACK_URL) loadedConfig.callbackUrl = process.env.CALLBACK_URL;
+
         return {
-          config: { ...DEFAULT_CONFIG, ...(parsed.config || {}) },
+          config: loadedConfig,
           transactions: parsed.transactions || [],
           customerPhoneDirectory: { ...DEFAULT_DIRECTORY, ...(parsed.customerPhoneDirectory || {}) }
         };

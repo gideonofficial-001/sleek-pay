@@ -1,0 +1,35 @@
+# Render Blueprint Specification for Sleek Tech Pay Backend
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: sleek-tech-pay-backend
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: ENVIRONMENT
+        value: production
+      # Set your Safaricom credentials in the Render Dashboard
+      - key: CONSUMER_KEY
+        sync: false
+      - key: CONSUMER_SECRET
+        sync: false
+      - key: PASSKEY
+        sync: false
+      - key: SHORTCODE
+        sync: false
+      - key: CALLBACK_URL
+        sync: false
+      - key: INITIATOR_NAME
+        sync: false
+      - key: SECURITY_CREDENTIAL
+        sync: false
