@@ -1,0 +1,14 @@
+{
+  "name": "sleek-tech-pay",
+  "version": "1.0.0",
+  "description": "Sleek Tech Pay - M-PESA Payment Platform & POS Gateway",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "start": "node backend/dist/server.js"
+  },
+  "keywords": ["mpesa", "daraja", "safaricom", "pos", "payments", "stk-push", "qr-code"],
+  "author": "Gideon",
+  "license": "ISC"
+}

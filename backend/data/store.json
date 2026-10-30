@@ -1,0 +1,56 @@
+{
+  "config": {
+    "environment": "production",
+    "consumerKey": "",
+    "consumerSecret": "",
+    "passkey": "",
+    "shortcode": "",
+    "partyB": "",
+    "accountReference": "SLEEK-POS",
+    "businessType": "BuyGoods",
+    "callbackUrl": "https://sleek-pay.loca.lt/api/mpesa/callback/stk",
+    "initiatorName": "",
+    "securityCredential": ""
+  },
+  "transactions": [
+    {
+      "id": "c1ccc471-1476-4841-9027-5ca3a01d654d",
+      "phoneNumber": "DYNAMIC-QR",
+      "customerName": "SCAN TO PAY (M-PESA)",
+      "amount": 750,
+      "accountReference": "POS-TABLE-01",
+      "transactionDesc": "Dynamic QR Payment for POS-TABLE-01",
+      "transactionType": "QR",
+      "status": "PENDING",
+      "createdAt": "2026-10-30T10:17:31.723Z",
+      "updatedAt": "2026-10-30T10:17:31.723Z"
+    },
+    {
+      "id": "00f366cc-0ebc-4875-a348-fbce296a8166",
+      "phoneNumber": "254712345678",
+      "customerName": "GIDEON KIPCHUMBA",
+      "amount": 500,
+      "accountReference": "SLEEK-POS",
+      "transactionDesc": "Sleek Tech Payment",
+      "transactionType": "STK",
+      "status": "COMPLETED",
+      "createdAt": "2026-10-30T10:17:31.715Z",
+      "updatedAt": "2026-10-30T10:17:40.328Z",
+      "checkoutRequestId": "ws_CO_1793355451716_23029",
+      "merchantRequestId": "MR_1793355451716",
+      "resultDesc": "The service request is processed successfully.",
+      "mpesaReceiptNumber": "NLMVUTJD9K34",
+      "resultCode": 0
+    }
+  ],
+  "customerPhoneDirectory": {
+    "254712345678": "GIDEON KIPCHUMBA",
+    "254722000000": "FAITH WANJIKU",
+    "254711223344": "BRIAN OCHIENG",
+    "254790112233": "MARY WAITHERA",
+    "254745678901": "DENNIS MUTUA",
+    "254756789123": "ALICE CHEBET",
+    "254701928374": "KEVIN KARIUKI",
+    "DYNAMIC-QR": "SCAN TO PAY (M-PESA)"
+  }
+}
